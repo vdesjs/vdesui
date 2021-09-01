@@ -1,0 +1,17 @@
+<view class="demo-home">
+    <view class="demo-home__title">
+        <image mode="aspectFit" class="demo-home__image" src="https://img.yzcdn.cn/vant/logo.png" />
+        <view class="demo-home__text">vdesui</view>
+        <view class="demo-home__desc">轻量级小程序多端 Vue 组件库</view>
+    </view>
+    <view class="demo-home-nav">
+        <view wx:for="{{list}}" wx:for-item="group" wx:key="index">
+            <view class="demo-home-nav__title">{{ group.groupName }}</view>
+            <view class="demo-home-nav__group">
+                <view wx:for="{{group.list}}" wx:for-item="item" wx:key="index" class="demo-home-nav__block" data-url="{{item.path}}/index" bind:tap="onClick">
+                    {{item.title}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

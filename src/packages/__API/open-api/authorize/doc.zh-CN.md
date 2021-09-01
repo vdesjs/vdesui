@@ -1,0 +1,1 @@
+# wx.authorize(Object object)

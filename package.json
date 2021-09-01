@@ -1,0 +1,47 @@
+{
+  "name": "vdesui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/vdesui.umd.js",
+  "module": "dist/vdesui.es.ts",
+  "types": "types/src/packages/vdesui.vue.d.ts",
+  "scripts": {
+    "dev": "npm run pre && vite --force",
+    "build:site": "npm run pre && vite build",
+    "pre": "npm run bundle:config && npm run generate",
+    "bundle:config": "node ./scripts/bundle/bundleConfig.js",
+    "generate": "node ./scripts/generate/index.js",
+    "build": "vite build --config vite.config.build.ts && node ./scripts/generate/genType.js"
+  },
+  "keywords": [],
+  "author": "china-bin",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.4.0",
+    "@vitejs/plugin-vue-jsx": "^1.1.7",
+    "@vue/compiler-sfc": "^3.2.4",
+    "autoprefixer": "^10.3.2",
+    "axios": "^0.21.1",
+    "fast-glob": "^3.2.7",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.5",
+    "ts-morph": "^11.0.3",
+    "typescript": "^4.3.5",
+    "vite": "^2.5.0",
+    "vite-plugin-md": "^0.11.0",
+    "vue-jest": "^3.0.7"
+  },
+  "dependencies": {
+    "sass": "^1.38.0",
+    "vue": "^3.2.4",
+    "vue-router": "^4.0.11"
+  }
+}

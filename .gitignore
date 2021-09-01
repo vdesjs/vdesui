@@ -1,0 +1,37 @@
+.DS_Store
+node_modules
+/dist
+/libs
+/jd/upload.js
+yarn.lock
+package-lock.json
+/cache
+/src/nutui.ts
+/src/packages/nutui.vue.ts
+/src/packages/nutui.taro.vue.ts
+/.nyc_output
+/coverage
+/tsc/test
+/dist-doc
+/types
+tsc
+
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
