@@ -6,6 +6,9 @@
       <vdes-button @tap="userLocation">获取地理位置</vdes-button>
       <vdes-button @tap="userLocationBackground">获取后台地理位置</vdes-button>
       <vdes-button @tap="weRun">获取你的微信步数</vdes-button>
+      <vdes-button @tap="record">录音功能</vdes-button>
+      <vdes-button @tap="writePhotosAlbum">保存到相册</vdes-button>
+      <vdes-button @tap="camera">摄像头</vdes-button>
     </div>
   </div>
 </template>
@@ -44,6 +47,30 @@ const weRun = () => {
       
     }
 
+  })
+}
+
+const record = () => {
+  vdes.authorize({
+    scope: 'scope.record',
+    success() {
+
+    }
+  })
+}
+
+const writePhotosAlbum = () => {
+  vdes.authorize({
+    scope: 'scope.writePhotosAlbum',
+    success() {
+
+    }
+  })
+}
+
+const camera = () => {
+  vdes.authorize({
+    scope: 'scope.camera'
   })
 }
 </script> 

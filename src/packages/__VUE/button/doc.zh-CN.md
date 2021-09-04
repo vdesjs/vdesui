@@ -31,6 +31,18 @@
 
 
 
+### open-type的合法值
+
+| 值             | 说明                                                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| concat         | 打开客服会话，如果用户在会话中点击消息卡片后返回小程序，可以从 bindcontact 回调中获得具体信息,[具体说明](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/customer-message/customer-message.html) |
+| share          | 触发用户转发，使用前建议先阅读[使用指引](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/share.html#%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95)                                                        |
+| getPhoneNumber | 获取用户手机号，可以从bindgetphonenumber回调中获取到用户信息                                                                                                                                                             |
+
+
+
+说明: open-type="getUserInfo"已经不推荐使用，请使用 vdes.getUserProfile
+
 
 
 

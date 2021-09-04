@@ -10,6 +10,7 @@
   <wx-toast></wx-toast>
   <wx-action-sheet></wx-action-sheet>
   <wx-auth-dialog></wx-auth-dialog>
+  <seeting></seeting>
 </template>
 <script lang="ts" setup>
 import TopBar from './components/TopBar.vue';
@@ -19,6 +20,7 @@ import WxLoading from './wxcomponets/WxLoading.vue';
 import WxToast from './wxcomponets/WxToast.vue';
 import WxActionSheet from './wxcomponets/WxActionSheet.vue';
 import WxAuthDialog from './wxcomponets/WxAuthDialog.vue';
+import Seeting from './wxcomponets/Seeting.vue';
 </script>
 <style lang="scss">
 * {
@@ -33,7 +35,7 @@ import WxAuthDialog from './wxcomponets/WxAuthDialog.vue';
   .demo {
     overflow-y: scroll;
     height: calc(667px - 20px - 44px);
-    
+
     > h2 {
       margin-top: 30px;
       margin-bottom: 10px;

@@ -53,7 +53,7 @@ export default defineComponent({
       'scope.werun': '获取你的微信步数',
       'scope.record': '使用你的麦克风',
       'scope.writePhotosAlbum': '保存图片或视频到你的相册',
-      'scope.camera': '使用你的摄像头'
+      'scope.camera': '使用你的摄像头',
     };
     const agreeText = computed(() => {
       const scope = mobileGlobal.authDialog.scope;

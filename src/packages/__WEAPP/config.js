@@ -6,6 +6,10 @@ export default [
             {
                 path: '/button',
                 title: '按钮'
+            },
+            {
+                path: '/switch',
+                title: '开关'
             }
         ]
     }

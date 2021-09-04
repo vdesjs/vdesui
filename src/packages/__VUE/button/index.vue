@@ -103,6 +103,16 @@ export default defineComponent({
         emit('getphonenumber', getphonenumber());
         return;
       }
+
+      if (openType == 'launchApp') {
+        vdes.showModal({
+          title: '模拟打开app',
+          content: '暂不支持打开app',
+          showCancel: false,
+          confirmText: '返回'
+        })
+      }
+
     };
     const longpress = () => {
       console.log('longpress inner');

@@ -8,9 +8,10 @@
 
         <h2>{{t('openType')}}</h2>
         <div>
-            <vdes-button class="button" type="primary" open-type="getPhoneNumber" @getphonenumber="phoneNumber">获取手机号</vdes-button>
             <vdes-button class="button" open-type="concact">打开客服会话</vdes-button>
             <vdes-button class="button" open-type="share">分享</vdes-button>
+            <vdes-button class="button" type="primary" open-type="getPhoneNumber" @getphonenumber="phoneNumber">获取手机号</vdes-button>
+            <vdes-button class="button" open-type="launchApp">打开app</vdes-button>
         </div>
     </div>
 </template>
@@ -42,7 +43,7 @@ const tap = (event: any) => {
 }
 
 const phoneNumber = (event) => {
-    console.log(event)
+    console.log("event.detail",event.detail)
 }
 
 </script>

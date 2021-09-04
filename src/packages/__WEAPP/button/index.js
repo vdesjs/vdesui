@@ -23,7 +23,7 @@ var pageObject = {
       loading: !this.data.loading
     })
   },
-  onGotUserInfo: function (e) {
+  getUserProfile: function (e) {
     wx.getUserProfile({
       desc: '用途',
       success(res) {
@@ -35,8 +35,6 @@ var pageObject = {
     
     })
     console.log(e)
-    console.log(e.detail.userInfo)
-    console.log(e.detail.rawData)
   },
   getPhoneNumber(e) {
     console.log(e)
