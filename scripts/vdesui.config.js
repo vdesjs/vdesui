@@ -33,7 +33,7 @@ var vdesui_config_default = defineConfig({
       header: [
         {
           name: "intro",
-          cName: "\u6307\u5357",
+          cName: "\u7EC4\u4EF6",
           path: "intro"
         },
         {
@@ -86,6 +86,15 @@ var vdesui_config_default = defineConfig({
               name: "Switch",
               desc: "\u5F00\u5173",
               author: "cc"
+            },
+            {
+              name: "Cell",
+              desc: "\u5217\u8868\u9879",
+              author: ""
+            },
+            {
+              name: "Cells",
+              desc: "\u5217\u8868\u5206\u7EC4"
             }
           ]
         },
@@ -104,6 +113,15 @@ var vdesui_config_default = defineConfig({
             {
               name: "Dialog",
               desc: "\u5F39\u7A97\u7EC4\u4EF6"
+            }
+          ]
+        },
+        {
+          name: "\u5A92\u4F53\u7EC4\u4EF6",
+          packages: [
+            {
+              name: "Image",
+              desc: "\u56FE\u7247"
             }
           ]
         }

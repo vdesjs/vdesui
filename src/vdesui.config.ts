@@ -70,6 +70,15 @@ export default defineConfig({
               name: 'Switch',
               desc: '开关',
               author: 'cc'
+            },
+            {
+              name: 'Cell',
+              desc: '列表项',
+              author: ''
+            },
+            {
+              name: 'Cells',
+              desc: '列表分组'
             }
           ]
         },
@@ -89,6 +98,15 @@ export default defineConfig({
               name: 'Dialog',
               desc: '弹窗组件'
             },
+          ]
+        },
+        {
+          name: '媒体组件',
+          packages: [
+            {
+              name: 'Image',
+              desc: '图片'
+            }
           ]
         }
       ],

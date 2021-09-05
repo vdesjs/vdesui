@@ -1,21 +1,20 @@
 @use "sass:math";
 
-
-
 @import './mixins/index';
 @import './animation/index';
 @import './theme/index.scss';
-
 
 // base
 $weuiLinkColorDefault: #7d90a9;
 $weuiLineColorLight: var(--weui-FG-3);
 
 // color
-$weuiBgColorPrimary: #f7f7f7;
-$weuiTextColorTitle: rgba(0, 0, 0, 0.9);
-
-$weuiBgColorActive: #ececec;
+$weuiBgColorPrimary: var(--weui-BG-1);;
+$weuiTextColorTitle: var(--weui-FG-0);
+$weuiBgColorActive: var(--weui-BG-COLOR-ACTIVE);
+$weuiTextColorTips: var(--weui-FG-2);
+$weuiColorWarn: var(--weui-RED);
+$weuiTextColorDesc: var(--weui-FG-1);
 
 // dialog
 $weuiDialogBackgroundColor: #fff;
@@ -27,6 +26,7 @@ $weuiDialogLinkActiveBc: $weuiBgColorActive;
 
 // cell
 $weuiCellGapV: 16px;
+$weuiCellGapH: 16px;
 $weuiCellHeight: 56px;
 $weuiCellFontSize: 17px;
 $weuiCellBorderColor: $weuiLineColorLight;
@@ -34,3 +34,10 @@ $weuiCellBorderColor: $weuiLineColorLight;
 $weuiCellLineHeight: unit(
   math.div(($weuiCellHeight - 2 * $weuiCellGapV), $weuiCellFontSize)
 ); // 高度减去上下padding的行高
+$weuiCellsMarginTop: 8px;
+$weuiCellBg: var(--weui-BG-2);
+$weuiCellTipsFontSize: 14px;
+
+// button
+$weuiBtnDefaultFontColor: var(--weui-BTN-DEFAULT-COLOR);
+$weuiBtnDefaultBg: var(--weui-BTN-DEFAULT-BG);

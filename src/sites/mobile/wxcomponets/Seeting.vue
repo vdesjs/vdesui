@@ -14,16 +14,19 @@
     </div>
 
     <div class="setting">
-      <div class="weui-cells__title">
-        <p>允许 “xxxxx” 使用我的</p>
-      </div>
-      <div class="weui-cells weui-cells_form">
+      <vdes-cells title="允许 “xxxxx” 使用我的">
+        <vdes-cell value="微信运动步数">
+          <template #footer><vdes-switch></vdes-switch></template>
+        </vdes-cell>
+      </vdes-cells>
+
+      <!-- <div class="weui-cells weui-cells_form">
         <div class="weui-cell weui-cell_switch"
           ><div class="weui-cell__bd">微信运动步数</div
           ><div class="weui-cell__ft"
             ><input class="weui-switch auto_test_switch" type="checkbox" /></div
         ></div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -37,7 +40,7 @@ const data = reactive({
 });
 
 const onBack = () => {
-  data.show = false;
+  data.show = true;
 };
 </script>
 
