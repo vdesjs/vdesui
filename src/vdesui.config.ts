@@ -17,7 +17,7 @@ export default defineConfig({
       header: [
         {
           name: 'intro',
-          cName: '指南',
+          cName: '组件',
           path: 'intro'
         },
         {
@@ -65,6 +65,11 @@ export default defineConfig({
               name: 'Input',
               desc: '输入框',
               author: 'cc'
+            },
+            {
+              name: 'Switch',
+              desc: '开关',
+              author: 'cc'
             }
           ]
         },
@@ -83,7 +88,7 @@ export default defineConfig({
             {
               name: 'Dialog',
               desc: '弹窗组件'
-            }
+            },
           ]
         }
       ],

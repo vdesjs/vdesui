@@ -81,6 +81,11 @@ var vdesui_config_default = defineConfig({
               name: "Input",
               desc: "\u8F93\u5165\u6846",
               author: "cc"
+            },
+            {
+              name: "Switch",
+              desc: "\u5F00\u5173",
+              author: "cc"
             }
           ]
         },

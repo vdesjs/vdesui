@@ -2,7 +2,17 @@
     <div class="demo">
         <h2></h2>
         <div>
-            
+            <vdes-switch
+                type="switch"
+            >
+            </vdes-switch>
+
+            <vdes-switch
+                type="checkbox"
+            >
+
+
+            </vdes-switch>
         </div>
 
     </div>

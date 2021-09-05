@@ -3,11 +3,12 @@ import events from './__VUE/events/index';
 import Button from './__VUE/button/index.vue';
 import Form from './__VUE/form/index.vue';
 import Input from './__VUE/input/index.vue';
+import Switch from './__VUE/switch/index.vue';
 import view from './__VUE/view/index.vue';
 import Dialog from './__VUE/dialog/index.vue';
 
 function install(app: App) {
-    const packages = [events,Button,Form,Input,view,Dialog];
+    const packages = [events,Button,Form,Input,Switch,view,Dialog];
     packages.forEach((item:any) => {
       if (item.install) {
         app.use(item);
@@ -16,5 +17,5 @@ function install(app: App) {
       }
     });
   }
-export { install, events,Button,Form,Input,view,Dialog  };
+export { install, events,Button,Form,Input,Switch,view,Dialog  };
 export default { install, version:'1.0.0'};
