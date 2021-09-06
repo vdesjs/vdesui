@@ -5,6 +5,7 @@ import {ToastObj} from '@/packages/__API/ui/interaction/showToast'
 import { ActionSheetObj } from '@/packages/__API/ui/interaction/showActionSheet';
 import { AuthorizeObj } from '@/packages/__API/open-api/authorize/authorize';
 import { setWxappInfo } from '@/packages/__API/common/constant';
+import { OpenSeetingObj } from '@/packages/__API/open-api/seeting/openSetting';
 
 interface AuthorzeExtendObj {
   desc?: string;
@@ -17,7 +18,8 @@ export interface GlobalType {
   loading: WxLoadingObj;
   toast: ToastObj;
   actionSheet: ActionSheetObj;
-  authDialog: AuthorizeObj & AuthorzeExtendObj
+  authDialog: AuthorizeObj & AuthorzeExtendObj;
+  seeting: OpenSeetingObj,
 }
 
 const mobileGlobal = reactive<GlobalType>({
@@ -36,6 +38,9 @@ const mobileGlobal = reactive<GlobalType>({
     itemList: []
   },
   authDialog: {
+    dialogShow: false,
+  },
+  seeting: {
     dialogShow: false,
   }
 });

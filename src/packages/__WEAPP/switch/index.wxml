@@ -19,5 +19,5 @@
         </view>
     </view>
 
-    <image src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" show-menu-by-longpress="true" />
+    <view bindtap="openSeeting">打开授权页面</view>
 </view>

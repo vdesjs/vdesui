@@ -7,6 +7,7 @@ import { setNavigationBarTitle } from './ui/navigation-bar/setNavigationBarTitle
 import { showLoading, hideLoading } from './ui/interaction/showLoading';
 import { showToast, hideToast} from './ui/interaction/showToast';
 import { showActionSheet } from './ui/interaction/showActionSheet';
+import {openSetting} from "./open-api/seeting/openSetting"
 // interface vdes {
 //     getUserInfo: () => void
 // }
@@ -23,7 +24,9 @@ const vdes = {
   showToast,
   hideToast,
   showActionSheet,
-  
+  openSetting,
+
+
   install,
 };
 

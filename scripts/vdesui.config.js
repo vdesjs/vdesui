@@ -141,6 +141,10 @@ var vdesui_config_default = defineConfig({
             {
               name: "\u6388\u6743",
               path: "open-api/authorize"
+            },
+            {
+              name: "\u8BBE\u7F6E",
+              path: "open-api/seeting"
             }
           ]
         },

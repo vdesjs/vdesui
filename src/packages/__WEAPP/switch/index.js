@@ -4,6 +4,14 @@ var pageData = {
     switch2Checked: false,
     switch1Style: '',
     switch2Style: 'text-decoration: line-through'
+  },
+  openSeeting() {
+    wx.openSetting({
+      success (res) {
+        console.log(res)
+       
+      }
+    })
   }
 }
 for (var i = 1; i <= 2; ++i) {

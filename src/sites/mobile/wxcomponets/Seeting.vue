@@ -1,5 +1,5 @@
 <template>
-  <div class="simulator-seeting" v-if="data.show">
+  <div class="simulator-seeting" v-if="dialogShow">
     <TopBar></TopBar>
     <div class="nav">
       <div class="back" @click="onBack">
@@ -15,33 +15,64 @@
 
     <div class="setting">
       <vdes-cells title="允许 “xxxxx” 使用我的">
-        <vdes-cell value="微信运动步数">
-          <template #footer><vdes-switch></vdes-switch></template>
+        <vdes-cell
+          v-for="auth in Object.keys(authorizeExistList)"
+          :value="getAuthorizeText(auth)"
+        >
+          <template #footer
+            ><vdes-switch
+              @change="switchAuthorize($event, auth)"
+              :checked="authorizeExistList[auth]"
+            ></vdes-switch
+          ></template>
         </vdes-cell>
       </vdes-cells>
-
-      <!-- <div class="weui-cells weui-cells_form">
-        <div class="weui-cell weui-cell_switch"
-          ><div class="weui-cell__bd">微信运动步数</div
-          ><div class="weui-cell__ft"
-            ><input class="weui-switch auto_test_switch" type="checkbox" /></div
-        ></div>
-      </div> -->
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from '@vue/reactivity';
+import {
+  getAuthorizeExistList,
+  authorizeList,
+  enableAuhorizeScope,
+  disableAuhorizeScope
+} from '@/packages/__API/open-api/authorize/scope';
+import { onUpdated, watchEffect } from 'vue';
+import { ref } from 'vue';
 import TopBar from '../components/TopBar.vue';
+import { useGlobal } from '../store/global';
 
-const data = reactive({
-  show: true
+const { mobileGlobal } = useGlobal();
+
+let dialogShow = ref(mobileGlobal.seeting.dialogShow);
+
+watchEffect(() => {
+  dialogShow.value = mobileGlobal.seeting.dialogShow;
 });
 
-const onBack = () => {
-  data.show = true;
+let authorizeExistList = ref(getAuthorizeExistList());
+const switchAuthorize = (event, authrize) => {
+  console.log('swith', event);
+  if (event.detail.value == true) {
+    enableAuhorizeScope(authrize);
+  } else {
+    disableAuhorizeScope(authrize);
+  }
 };
+
+const getAuthorizeText = (authorrize) => {
+  return authorizeList[authorrize];
+};
+
+const onBack = () => {
+  mobileGlobal.seeting.dialogShow = false;
+};
+
+onUpdated(() => {
+  console.log('onUpdated');
+  authorizeExistList.value = getAuthorizeExistList();
+});
 </script>
 
 <style lang="scss">

@@ -125,6 +125,10 @@ export default defineConfig({
             {
               name: '授权',
               path: 'open-api/authorize'
+            },
+            {
+              name: '设置',
+              path: 'open-api/seeting'
             }
           ]
         },

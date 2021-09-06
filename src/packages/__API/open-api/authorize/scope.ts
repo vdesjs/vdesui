@@ -12,7 +12,7 @@ const SCOPE_KEY = 'vdesui_scope_';
 const AUTH_ENABLE = '1';
 const AUTH_DISABLE = '0';
 
-const authorizeList: Record<AuthorizeScope, string> = {
+export const authorizeList: Record<AuthorizeScope, string> = {
   'scope.userProfile': '使用我的用户信息',
   'scope.userLocation': '地理位置',
   'scope.userLocationBackground': '后台获取地理位置',
@@ -27,24 +27,25 @@ interface ExistObj {
   desc: string;
   isOpen: boolean;
 }
-export function getAuthorizeExistList() {
-  const exitList: ExistObj[] = [];
+
+export type AuthSetting = Record<string, boolean>;
+
+export function getAuthorizeExistList(): AuthSetting {
+  const exitList: AuthSetting = {};
 
   Object.keys(authorizeList).forEach((authorize: AuthorizeScope) => {
     console.log(authorize);
     if (localStorage.getItem(SCOPE_KEY + authorize) != null) {
       // 权限存在
-      exitList.push({
-        authorize,
-        desc: authorizeList[authorize],
-        isOpen:
-          localStorage.getItem(SCOPE_KEY + authorize) == AUTH_ENABLE
-            ? true
-            : false
-      });
+      exitList[authorize] =
+        localStorage.getItem(SCOPE_KEY + authorize) == AUTH_ENABLE
+          ? true
+          : false;
+
     }
   });
 
+  console.log(exitList)
   return exitList;
 }
 
