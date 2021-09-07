@@ -23,5 +23,5 @@
     <button open-type="feedback">feeback</button>
     <input type="idcard" placeholder="you" />
 
-    <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:red;" auto-height="true"  />
+    <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:red;" auto-height="true" maxlength="-1"  />
 </view>

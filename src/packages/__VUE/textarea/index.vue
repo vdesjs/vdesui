@@ -1,6 +1,12 @@
 <script lang="tsx">
 import { extend } from '@/packages/utils/base';
-import { computed, defineComponent, onMounted } from '@vue/runtime-core';
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onMounted,
+  watchEffect
+} from '@vue/runtime-core';
 import { ref, watch } from 'vue';
 import { FiledProps } from '../common/field';
 
@@ -51,41 +57,56 @@ export default defineComponent({
     'confirm',
     'keyboardheightchange'
   ],
-  setup(props) {
+  setup(props, { emit }) {
     let valueSync = ref<string>(props.value);
-    let lineNum = 0;
     const valueComute = computed(() => {
       const val = valueSync.value.split('\n');
-      lineNum = val.length;
-      console.log(lineNum);
       return val;
     });
 
+    let cacheComputeHeight = 0;
+
     watch(
-      () => lineNum,
+      () => valueComute.value,
       () => {
-        console.log('lineChange', lineNum);
+        nextTick(() => {
+          let lineHeight = parseFloat(
+            getComputedStyle(rootDom.value as unknown as Element).lineHeight
+          );
+          let computeHeight = parseFloat(
+            // @ts-ignore
+            getComputedStyle(computeDom.value).height
+          );
+
+          if (cacheComputeHeight != 0 && computeHeight != cacheComputeHeight) {
+            emit('linechange');
+          }
+
+          cacheComputeHeight = computeHeight;
+
+          if (props.autoHeight) {
+            // @ts-ignore
+            rootDom.value.style.height = computeHeight + lineHeight + 'px';
+          }
+        });
       }
     );
 
     const onInput = (event) => {
-      console.log(event.target);
       valueSync.value = event.target.value;
+      emit('input');
+    };
 
-      console.log(getComputedStyle(rootDom.value as unknown as Element).height);
+    const onFocus = (event) => {
+      emit('focus');
+    };
+
+    const onBlur = (event) => {
+      emit('blur');
     };
 
     const rootDom = ref(null);
-
-    onMounted(() => {
-      console.log(getComputedStyle(rootDom.value as unknown as Element).height);
-    });
-
-    const computeHeight = () => {
-      let lineHeight = getComputedStyle(
-        rootDom.value as unknown as Element
-      ).lineHeight;
-    };
+    const computeDom = ref(null);
 
     return () => {
       return (
@@ -93,7 +114,7 @@ export default defineComponent({
           <div class="vdes-textarea-wrapper">
             <div class="vdes-textarea-placeholder" />
             <div class="vdes-textarea-line" />
-            <div class="vdes-textarea-compute">
+            <div class="vdes-textarea-compute" ref={computeDom}>
               {valueComute.value.map((val) => {
                 return <div>{val.trim() ? val : '.'} </div>;
               })}
@@ -101,6 +122,8 @@ export default defineComponent({
             <textarea
               class="vdes-textarea-textarea"
               onInput={onInput}
+              onFocus={onFocus}
+              onBlur={onBlur}
               value={valueSync.value}
             />
           </div>
@@ -181,15 +204,5 @@ export default defineComponent({
   text-indent: inherit;
   text-transform: inherit;
   text-shadow: inherit;
-}
-/* 用于解决 iOS textarea 内部默认边距 */
-.vdes-textarea-textarea-fix-margin {
-  width: auto;
-  right: 0;
-  margin: 0 -3px;
-}
-.vdes-textarea-textarea:disabled {
-  /* 用于重置iOS14以下禁用状态文字颜色 */
-  -webkit-text-fill-color: currentcolor;
 }
 </style>
