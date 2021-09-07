@@ -12,6 +12,7 @@
             <vdes-button class="button" open-type="share">分享</vdes-button>
             <vdes-button class="button" type="primary" open-type="getPhoneNumber" @getphonenumber="phoneNumber">获取手机号</vdes-button>
             <vdes-button class="button" open-type="launchApp">打开app</vdes-button>
+            <vdes-button class="button" open-type="feedback">反馈</vdes-button>
         </div>
     </div>
 </template>

@@ -95,6 +95,10 @@ var vdesui_config_default = defineConfig({
             {
               name: "Cells",
               desc: "\u5217\u8868\u5206\u7EC4"
+            },
+            {
+              name: "Textarea",
+              desc: "\u591A\u884C\u8F93\u5165\u6846"
             }
           ]
         },

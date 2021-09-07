@@ -79,6 +79,10 @@ export default defineConfig({
             {
               name: 'Cells',
               desc: '列表分组'
+            },
+            {
+              name: 'Textarea',
+              desc: '多行输入框'
             }
           ]
         },

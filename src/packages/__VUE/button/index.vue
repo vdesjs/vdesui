@@ -80,7 +80,7 @@ export default defineComponent({
           content: '暂不支持打开客服会话',
           showCancel: false,
           confirmText: '返回'
-        })
+        });
         console.log('暂不支持打开客服会话');
 
         return;
@@ -92,10 +92,9 @@ export default defineComponent({
           content: '当前页面截图',
           confirmText: '发送',
           success(res) {
-            console.log(res)
+            console.log(res);
           }
-
-        })
+        });
 
         return;
       }
@@ -110,9 +109,14 @@ export default defineComponent({
           content: '暂不支持打开app',
           showCancel: false,
           confirmText: '返回'
-        })
+        });
       }
 
+      if (openType == 'feedback') {
+        window.open(
+          'https://mp.weixin.qq.com/wxawap/wapreportwxadevlog?action=complain_feedback&appid=wx8f87071483e8da1c&from=3#wechat_redirect'
+        );
+      }
     };
     const longpress = () => {
       console.log('longpress inner');
