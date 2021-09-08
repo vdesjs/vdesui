@@ -38,7 +38,14 @@ export default defineComponent({
     return () => {
       return (
         <div class="vdes-picker-view">
-          <div class="vdes-picker-view-wrapper">{slots.default?.()}</div>
+          <div class="vdes-picker-view-wrapper">
+            {slots.default?.().map((item, index) => {
+              item.props = {
+                defaultIndex: props.value[index] ? props.value[index] : 0
+              };
+              return item;
+            })}
+          </div>
         </div>
       );
     };

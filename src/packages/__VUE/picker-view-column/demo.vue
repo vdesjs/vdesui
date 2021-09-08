@@ -2,7 +2,7 @@
   <div class="demo">
     <h2>测试</h2>
     <div>
-      <vdes-picker-view>
+      <vdes-picker-view :value="[3, 5]">
         <vdes-picker-view-column>
           <vdes-view>ffffff</vdes-view>
           <vdes-view>aaaas</vdes-view>

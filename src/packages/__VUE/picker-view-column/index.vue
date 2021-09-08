@@ -12,8 +12,6 @@ function getElementTranslateY(element: Element) {
   return Number(translateY);
 }
 
-
-
 const visibleItemCount = 6;
 const itemHeight = 34;
 const swipeDuration = 1000;
@@ -26,8 +24,13 @@ const MOMENTUM_LIMIT_DISTANCE = 15;
 
 export default defineComponent({
   name: 'vdes-picker-view-column',
-  props: {},
-  setup(props, { slots }) {
+  props: {
+    defaultIndex: {
+      type: Number,
+      default: 0
+    }
+  },
+  setup(props, { slots, emit }) {
     let moving: boolean;
     let startOffset: number;
     let touchStartTime: number;
@@ -41,6 +44,7 @@ export default defineComponent({
     const wrapper = ref<HTMLElement>();
 
     const state = reactive({
+      index: props.defaultIndex,
       offset: 0,
       duration: 0
     });
@@ -49,9 +53,7 @@ export default defineComponent({
       return (itemHeight * (+visibleItemCount - 1)) / 2;
     };
 
-
     const setIndex = (index: number, emitChange?: boolean) => {
-
       const offset = -index * itemHeight;
       const trigger = () => {
         if (index !== state.index) {
