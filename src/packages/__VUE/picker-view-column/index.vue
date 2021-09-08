@@ -12,6 +12,8 @@ function getElementTranslateY(element: Element) {
   return Number(translateY);
 }
 
+
+
 const visibleItemCount = 6;
 const itemHeight = 34;
 const swipeDuration = 1000;
@@ -45,6 +47,30 @@ export default defineComponent({
 
     const baseOffset = () => {
       return (itemHeight * (+visibleItemCount - 1)) / 2;
+    };
+
+
+    const setIndex = (index: number, emitChange?: boolean) => {
+
+      const offset = -index * itemHeight;
+      const trigger = () => {
+        if (index !== state.index) {
+          state.index = index;
+
+          if (emitChange) {
+            emit('change', index);
+          }
+        }
+      };
+
+      // trigger the change event after transitionend when moving
+      if (moving && offset !== state.offset) {
+        transitionEndTrigger = trigger;
+      } else {
+        trigger();
+      }
+
+      state.offset = offset;
     };
 
     const getIndexByOffset = (offset: number) =>
