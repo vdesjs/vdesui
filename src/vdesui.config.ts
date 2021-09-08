@@ -52,17 +52,17 @@ export default defineConfig({
           name: '表单组件',
           packages: [
             {
-              name: 'Button',
+              name: 'button',
               desc: '按钮',
               author: 'cc'
             },
             {
-              name: 'Form',
+              name: 'form',
               desc: '表单',
               author: 'cc'
             },
             {
-              name: 'Input',
+              name: 'input',
               desc: '输入框',
               author: 'cc'
             },
@@ -72,17 +72,25 @@ export default defineConfig({
               author: 'cc'
             },
             {
-              name: 'Cell',
+              name: 'cell',
               desc: '列表项',
               author: ''
             },
             {
-              name: 'Cells',
+              name: 'cells',
               desc: '列表分组'
             },
             {
-              name: 'Textarea',
+              name: 'textarea',
               desc: '多行输入框'
+            },
+            {
+              name: 'picker-view',
+              desc: '嵌入页面的滚动选择器'
+            },
+            {
+              name: 'picker-view-column',
+              desc: '滚动选择器子项'
             }
           ]
         },

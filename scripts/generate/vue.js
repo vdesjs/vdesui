@@ -10,13 +10,19 @@ const navs = config.locales[lang].navs;
 
 let importStr = `import { App } from 'vue';\n`;
 
+const camelizeRE = /-(\w)/g;
+
+function camelize(str) {
+  return str.replace(camelizeRE, (_, c) => c.toUpperCase());
+}
+
 navs.map((item) => {
   item.packages.forEach((element) => {
     const { name, type } = element;
-    importStr += `import ${name} from './__VUE/${name.toLowerCase()}/index${
+    importStr += `import ${camelize(name)} from './__VUE/${name.toLowerCase()}/index${
       type === 'methods' ? '' : '.vue'
     }';\n`;
-    packages.push(name);
+    packages.push(camelize(name));
   });
 });
 

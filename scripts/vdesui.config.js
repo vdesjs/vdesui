@@ -68,17 +68,17 @@ var vdesui_config_default = defineConfig({
           name: "\u8868\u5355\u7EC4\u4EF6",
           packages: [
             {
-              name: "Button",
+              name: "button",
               desc: "\u6309\u94AE",
               author: "cc"
             },
             {
-              name: "Form",
+              name: "form",
               desc: "\u8868\u5355",
               author: "cc"
             },
             {
-              name: "Input",
+              name: "input",
               desc: "\u8F93\u5165\u6846",
               author: "cc"
             },
@@ -88,17 +88,25 @@ var vdesui_config_default = defineConfig({
               author: "cc"
             },
             {
-              name: "Cell",
+              name: "cell",
               desc: "\u5217\u8868\u9879",
               author: ""
             },
             {
-              name: "Cells",
+              name: "cells",
               desc: "\u5217\u8868\u5206\u7EC4"
             },
             {
-              name: "Textarea",
+              name: "textarea",
               desc: "\u591A\u884C\u8F93\u5165\u6846"
+            },
+            {
+              name: "picker-view",
+              desc: "\u5D4C\u5165\u9875\u9762\u7684\u6EDA\u52A8\u9009\u62E9\u5668"
+            },
+            {
+              name: "picker-view-column",
+              desc: "\u6EDA\u52A8\u9009\u62E9\u5668\u5B50\u9879"
             }
           ]
         },
