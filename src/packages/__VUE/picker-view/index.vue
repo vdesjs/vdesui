@@ -34,6 +34,8 @@ export default defineComponent({
     }
   },
 
+  emits: ['change', 'pickstart', 'pickend'],
+
   setup(props, { slots }) {
     return () => {
       return (
@@ -41,7 +43,8 @@ export default defineComponent({
           <div class="vdes-picker-view-wrapper">
             {slots.default?.().map((item, index) => {
               item.props = {
-                defaultIndex: props.value[index] ? props.value[index] : 0
+                defaultIndex: props.value[index] ? props.value[index] : 0,
+                columnIndex: index
               };
               return item;
             })}

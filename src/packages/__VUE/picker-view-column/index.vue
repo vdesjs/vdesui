@@ -2,7 +2,7 @@
 import { useTouch } from '@/packages/compsables';
 import { preventDefault } from '@/packages/utils/dom/event';
 import { clamp } from '@/packages/utils/format/number';
-import { ref, defineComponent, reactive } from 'vue';
+import { ref, defineComponent, reactive, getCurrentInstance } from 'vue';
 
 function getElementTranslateY(element: Element) {
   const style = getComputedStyle(element);
@@ -21,6 +21,7 @@ const swipeDuration = 1000;
 // 距离大于 `MOMENTUM_LIMIT_DISTANCE` 时，执行惯性滑动
 const MOMENTUM_LIMIT_TIME = 300;
 const MOMENTUM_LIMIT_DISTANCE = 15;
+const DEFAULT_DURATION = 200;
 
 export default defineComponent({
   name: 'vdes-picker-view-column',
@@ -28,9 +29,19 @@ export default defineComponent({
     defaultIndex: {
       type: Number,
       default: 0
+    },
+    columnIndex: {
+      type: Number
     }
   },
+  emits: ['change'],
   setup(props, { slots, emit }) {
+    const parentInstance = getCurrentInstance()?.parent;
+    const parentProps = parentInstance?.props;
+    // @ts-ignore
+    const { indicatorStyle, indicatorClass, maskStyle, maskClass } =
+      parentProps;
+
     let moving: boolean;
     let startOffset: number;
     let touchStartTime: number;
@@ -50,7 +61,7 @@ export default defineComponent({
     });
 
     const baseOffset = () => {
-      return (itemHeight * (+visibleItemCount - 1)) / 2;
+      return (itemHeight * (+visibleItemCount + 1)) / 2;
     };
 
     const setIndex = (index: number, emitChange?: boolean) => {
@@ -60,7 +71,16 @@ export default defineComponent({
           state.index = index;
 
           if (emitChange) {
-            emit('change', index);
+            console.log('change');
+            emit('change');
+
+            const changeEvent = new CustomEvent('change', {
+              detail: {
+                value: [props.columnIndex, index]
+              }
+            });
+
+            parentInstance?.emit('change', changeEvent);
           }
         }
       };
@@ -91,6 +111,8 @@ export default defineComponent({
     const onTouchStart = (event: TouchEvent) => {
       console.log('onTouchStart');
       touch.start(event);
+
+      parentInstance?.emit('pickstart');
 
       if (moving) {
         const translateY = getElementTranslateY(wrapper.value!);
@@ -131,18 +153,51 @@ export default defineComponent({
     const onTouchEnd = () => {
       console.log('onTouchend');
 
+      parentInstance?.emit('pickend');
+
       const distance = state.offset - momentumOffset;
       const duration = Date.now() - touchStartTime;
       const allowMomentum =
         duration < MOMENTUM_LIMIT_TIME &&
         Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
+
+      if (allowMomentum) {
+        momentum(distance, duration);
+        return;
+      }
+
+      const index = getIndexByOffset(state.offset);
+      console.log('index', index);
+      state.duration = DEFAULT_DURATION;
+      setIndex(index, true);
+
+      // compatible with desktop scenario
+      // use setTimeout to skip the click event Emitted after touchstart
+      setTimeout(() => {
+        moving = false;
+      }, 0);
     };
 
     const onTouchCancel = () => {
       console.log('onTouchcancel');
     };
 
+    const stopMomentum = () => {
+      moving = false;
+      state.duration = 0;
+
+      if (transitionEndTrigger) {
+        transitionEndTrigger();
+        transitionEndTrigger = null;
+      }
+    };
+
     return () => {
+      const wrapperStyle = {
+        transform: `translate3d(0, ${state.offset + baseOffset()}px, 0)`,
+        transitionDuration: `${state.duration}ms`,
+        transitionProperty: state.duration ? 'all' : 'none'
+      };
       return (
         <div
           class="vdes-picker-view-column"
@@ -152,9 +207,20 @@ export default defineComponent({
           onTouchcancel={onTouchCancel}
         >
           <div class="vdes-picker-view-group">
-            <div class="vdes-picker-view-mask"></div>
-            <div class="vdes-picker-view-indicator"></div>
-            <div class="vdes-picker-view-content" ref={wrapper}>
+            <div
+              class={`vdes-picker-view-mask ${maskClass}`}
+              style={maskStyle}
+            ></div>
+            <div
+              class={`vdes-picker-view-indicator ${indicatorClass}`}
+              style={indicatorStyle}
+            ></div>
+            <div
+              class="vdes-picker-view-content"
+              ref={wrapper}
+              style={wrapperStyle}
+              onTransitionend={stopMomentum}
+            >
               {slots.default?.()}
             </div>
           </div>

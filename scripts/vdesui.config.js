@@ -107,6 +107,10 @@ var vdesui_config_default = defineConfig({
             {
               name: "picker-view-column",
               desc: "\u6EDA\u52A8\u9009\u62E9\u5668\u5B50\u9879"
+            },
+            {
+              name: "picker",
+              desc: "\u4ECE\u5E95\u90E8\u5F39\u8D77\u7684\u6EDA\u52A8\u9009\u62E9\u5668"
             }
           ]
         },
