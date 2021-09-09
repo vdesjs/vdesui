@@ -168,7 +168,6 @@ function onMouse(touchType: string) {
 
     // reset
     if (ev.type == 'mouseup') {
-      console.log('reset');
       eventTarget = null;
     }
   };

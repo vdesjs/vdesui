@@ -91,6 +91,10 @@ export default defineConfig({
             {
               name: 'picker-view-column',
               desc: '滚动选择器子项'
+            },
+            {
+              name: 'picker',
+              desc: '从底部弹起的滚动选择器'
             }
           ]
         },
