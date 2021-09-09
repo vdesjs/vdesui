@@ -21,6 +21,7 @@ const swipeDuration = 1000;
 // 距离大于 `MOMENTUM_LIMIT_DISTANCE` 时，执行惯性滑动
 const MOMENTUM_LIMIT_TIME = 300;
 const MOMENTUM_LIMIT_DISTANCE = 15;
+const DEFAULT_DURATION = 200;
 
 export default defineComponent({
   name: 'vdes-picker-view-column',
@@ -90,52 +91,69 @@ export default defineComponent({
 
     const onTouchStart = (event: TouchEvent) => {
       console.log('onTouchStart');
-      touch.start(event);
+      // touch.start(event);
 
-      if (moving) {
-        const translateY = getElementTranslateY(wrapper.value!);
-        state.offset = Math.min(0, translateY - baseOffset());
-        startOffset = state.offset;
-      } else {
-        startOffset = state.offset;
-      }
-      state.duration = 0;
-      touchStartTime = Date.now();
-      momentumOffset = startOffset;
-      transitionEndTrigger = null;
+      // if (moving) {
+      //   const translateY = getElementTranslateY(wrapper.value!);
+      //   state.offset = Math.min(0, translateY - baseOffset());
+      //   startOffset = state.offset;
+      // } else {
+      //   startOffset = state.offset;
+      // }
+      // state.duration = 0;
+      // touchStartTime = Date.now();
+      // momentumOffset = startOffset;
+      // transitionEndTrigger = null;
     };
 
     const onTouchMove = (event: TouchEvent) => {
       console.log('onTouchmove');
 
-      touch.move(event);
+      // touch.move(event);
 
-      if (touch.isVertical()) {
-        moving = true;
-        preventDefault(event, true);
-      }
+      // if (touch.isVertical()) {
+      //   moving = true;
+      //   preventDefault(event, true);
+      // }
 
-      state.offset = clamp(
-        startOffset + touch.deltaY.value,
-        -(childCount * itemHeight),
-        itemHeight
-      );
+      // state.offset = clamp(
+      //   startOffset + touch.deltaY.value,
+      //   -(childCount * itemHeight),
+      //   itemHeight
+      // );
 
-      const now = Date.now();
-      if (now - touchStartTime > MOMENTUM_LIMIT_TIME) {
-        touchStartTime = now;
-        momentumOffset = state.offset;
-      }
+      // console.log(state.offset);
+
+      // const now = Date.now();
+      // if (now - touchStartTime > MOMENTUM_LIMIT_TIME) {
+      //   touchStartTime = now;
+      //   momentumOffset = state.offset;
+      // }
     };
 
     const onTouchEnd = () => {
       console.log('onTouchend');
 
-      const distance = state.offset - momentumOffset;
-      const duration = Date.now() - touchStartTime;
-      const allowMomentum =
-        duration < MOMENTUM_LIMIT_TIME &&
-        Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
+      // const distance = state.offset - momentumOffset;
+      // const duration = Date.now() - touchStartTime;
+      // const allowMomentum =
+      //   duration < MOMENTUM_LIMIT_TIME &&
+      //   Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
+
+      // if (allowMomentum) {
+      //   momentum(distance, duration);
+      //   return;
+      // }
+
+      // const index = getIndexByOffset(state.offset);
+      // state.duration = DEFAULT_DURATION;
+      // setIndex(index, true);
+
+      // // compatible with desktop scenario
+      // // use setTimeout to skip the click event Emitted after touchstart
+      // setTimeout(() => {
+      //   moving = false;
+      // }, 0);
     };
 
     const onTouchCancel = () => {
@@ -143,6 +161,11 @@ export default defineComponent({
     };
 
     return () => {
+      const wrapperStyle = {
+        transform: `translate3d(0, ${state.offset + baseOffset()}px, 0)`,
+        transitionDuration: `${state.duration}ms`,
+        transitionProperty: state.duration ? 'all' : 'none'
+      };
       return (
         <div
           class="vdes-picker-view-column"
@@ -154,7 +177,11 @@ export default defineComponent({
           <div class="vdes-picker-view-group">
             <div class="vdes-picker-view-mask"></div>
             <div class="vdes-picker-view-indicator"></div>
-            <div class="vdes-picker-view-content" ref={wrapper}>
+            <div
+              class="vdes-picker-view-content"
+              ref={wrapper}
+              style={wrapperStyle}
+            >
               {slots.default?.()}
             </div>
           </div>

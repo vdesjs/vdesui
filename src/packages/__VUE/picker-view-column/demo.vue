@@ -13,7 +13,7 @@
           <vdes-view>aaetf</vdes-view>
           <vdes-view>tttttt</vdes-view>
         </vdes-picker-view-column>
-        <vdes-picker-view-column>
+        <!-- <vdes-picker-view-column>
           <vdes-view>ffffff</vdes-view>
           <vdes-view>aaaas</vdes-view>
           <vdes-view>dddd</vdes-view>
@@ -22,7 +22,7 @@
           <vdes-view>yyyy</vdes-view>
           <vdes-view>aaetf</vdes-view>
           <vdes-view>tttttt</vdes-view>
-        </vdes-picker-view-column>
+        </vdes-picker-view-column> -->
       </vdes-picker-view>
     </div>
   </div>
